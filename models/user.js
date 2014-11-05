@@ -171,9 +171,10 @@ user.statics.getHistoryByUser = function(user_id, callback){
 	User.findOne({"_id":user_id}, function (err, user){
 		if(err){
 			throw err;
-		} else :
-		var history = user.history;
-		callback(history);
+		} else {
+			var history = user.history;
+			callback(history);
+		}
 	});
 }
 
