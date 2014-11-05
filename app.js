@@ -4,30 +4,10 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-var expressSession = require('express-session');
-var mongo = require('mongodb');
-
-var mongoose = require('mongoose');
-var connection_string = 'localhost/scriptspeak-api';
-if (process.env.OPENSHIFT_MONGODB_DB_PASSWORD) {
-    connection_string = process.env.OPENSHIFT_MONGODB_DB_USERNAME + ':' +
-        process.env.OPENSHIFT_MONGODB_DB_PASSWORD + '@' +
-        process.env.OPENSHIFT_MONGODB_DB_HOST + ':' +
-        process.env.OPENSHIFT_MONGODB_DB_PORT + '/' +
-        process.env.OPENSHIFT_APP_NAME;
-}
-mongoose.connect(connection_string);
-var db = mongoose.connection;
-
-db.on('error', console.error.bind(console, 'Mongoose connection error:'));
-
-db.once('open', function () {});
-
 
 var routes = require('./routes/index');
-var phrases = require('./routes/phrases');
 var users = require('./routes/users');
-
+var phrases = require('./routes/phrases');
 
 var app = express();
 
@@ -42,17 +22,10 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-app.use(expressSession({secret:'supersecrettoken', resave: true, saveUninitialized: true}));
 
-app.use(function(req,res,next){
-    req.db = db;
-    next();
-});
-
-
-app.use('/phrases', phrases);
-app.use('/users', users);
 app.use('/', routes);
+app.use('/users', users);
+app.use('/phrases', phrases);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
