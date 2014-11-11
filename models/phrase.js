@@ -8,12 +8,12 @@ var phraseSchema = mongoose.Schema({
 	author: {type: objectId, ref: 'User', required: true},
 });
 
-phraseSchema.method('createPhrase', function(text, dateCreated, numTimesUsed, callback) {
+phraseSchema.method('createPhrase', function(text, dateCreated, numTimesUsed, author, callback) {
 	var phrase = new Phrase ({
 		text:text,
 		dateCreated: dateCreated,
 		numTimesUsed: numTimesUsed,
-		author
+		author: author
 	});
 
 	phrase.save(function(err) {

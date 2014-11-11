@@ -1,29 +1,11 @@
 {
   "name": "scriptspeak-api",
   "version": "1.0.0",
-  "description": "OpenShift Sample Application",
-  "keywords": [
-    "OpenShift",
-    "Node.js",
-    "application",
-    "openshift"
-  ],
-  "author": {
-    "name": "OpenShift",
-    "email": "ramr@example.org",
-    "url": "http://www.openshift.com/"
+  "scripts": {
+    "start": "node app.js"
   },
-  "homepage": "http://www.openshift.com/",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/openshift/origin-server"
-  },
-
-  "engines": {
-    "node": ">= 0.6.0",
-    "npm": ">= 1.0.0"
-  },
-
+  "main": "app.js",
+  "private": true ,
   "dependencies": {
     "express": "~4.9.0",
     "body-parser": "~1.8.1",
@@ -38,13 +20,5 @@
     "mongoose": "*",
     "express-session": "*",
     "handlebars": "2.0.0"
-  },
-  "devDependencies": {},
-  "bundleDependencies": [],
-
-  "private": true,
-  "main": "./bin/www",
-  "scripts": {
-    "start": "node ./bin/www"
   }
 }

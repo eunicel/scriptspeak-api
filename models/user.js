@@ -154,9 +154,9 @@ user.statics.getSaved = function(callback){
 			throw err;
 		} else {
 			var all_saved = []
-			for (var i=0; i < user.length, i++){
+			for (var i=0; i < user.length; i++){
 				var saved = user[i].saved;
-				for (var j=0; j<saved.length, j++){
+				for (var j=0; j<saved.length; j++){
 					var phrase = saved[j];
 					all_saved.push(phrase);
 				}

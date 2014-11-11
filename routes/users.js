@@ -67,7 +67,7 @@ router.get('/users/:id/history', function(req, res){
 });
 
 //POST /users/:id/clearHistory
-router.post('/users/:id/historyclear', function(req, res)){
+router.post('/users/:id/history/clear', function(req, res){
 	var user_id = params("id");
 	user.clearHistory(user_id, function(user){
 		res.json({user:user, session:req.sessions});
